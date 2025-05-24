@@ -41,7 +41,10 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('/data/events.json')
+    // Dynamically construct the fetch URL based on the base path
+    const basePath = import.meta.env.BASE_URL || '/';
+    const fetchUrl = `${basePath}data/events.json`.replace(/^\/+/, '/');
+    fetch(fetchUrl)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch events');
