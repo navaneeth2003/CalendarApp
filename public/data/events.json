@@ -1,0 +1,68 @@
+[
+  {
+    "startTime": "10:00am",
+    "date": "05/05/2025",
+    "title": "Meeting with Alice",
+    "color": "3B82F6"
+  },
+  {
+    "startTime": "12:00pm",
+    "date": "05/05/2025",
+    "title": "GYM",
+    "color": "14B8A6"
+  },
+  {
+    "startTime": "03:00pm",
+    "date": "05/05/2025",
+    "title": "Drive to John",
+    "color": "EC4899"
+  },
+  {
+    "startTime": "09:00am",
+    "date": "08/05/2025",
+    "title": "Birthday",
+    "color": "3B82F6"
+  },
+  {
+    "startTime": "08:00am",
+    "date": "12/05/2025",
+    "title": "Go on Vacation",
+    "color": "14B8A6"
+  },
+  {
+    "startTime": "09:00am",
+    "date": "25/05/2025",
+    "title": "Daily Standup",
+    "color": "F6BE23"
+  },
+  {
+    "startTime": "11:00am",
+    "date": "25/05/2025",
+    "title": "Client Meeting",
+    "color": "EC4899"
+  },
+  {
+    "startTime": "02:00pm",
+    "date": "25/05/2025",
+    "title": "Lunch with Team",
+    "color": "3B82F6"
+  },
+  {
+    "startTime": "04:00pm",
+    "date": "25/05/2025",
+    "title": "Project Review",
+    "color": "14B8A6"
+  },
+  {
+    "startTime": "09:00am",
+    "date": "15/05/2025",
+    "title": "Doctor Appointment",
+    "color": "F6BE23"
+  },
+  {
+    "startTime": "01:00pm",
+    "date": "15/05/2025",
+    "title": "Team Sync",
+    "color": "EC4899"
+  }
+]
