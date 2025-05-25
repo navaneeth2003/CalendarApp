@@ -11,13 +11,13 @@ export default function CalendarGrid({ currentDate, onDayClick, events, selected
     const days = eachDayOfInterval({ start: gridStart, end: gridEnd });
 
     return (
-      <div className="mt-3 w-full">
-        <div className="grid grid-cols-7 gap-1 text-center text-xs md:text-sm font-medium text-gray-500">
+      <div className="mt-2 md:mt-3 w-full">
+        <div className="grid grid-cols-7 gap-0.5 md:gap-1 text-center text-[10px] md:text-sm font-medium text-gray-500">
           {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((d) => (
-            <div key={d} className="py-1 md:py-2">{d}</div>
+            <div key={d} className="py-0.5 md:py-2">{d}</div>
           ))}
         </div>
-        <div className="grid grid-cols-7 gap-1">
+        <div className="grid grid-cols-7 gap-0.5 md:gap-1">
           {days.map((day) => (
             <DayCell
               key={day}

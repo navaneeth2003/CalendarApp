@@ -2,7 +2,7 @@ export default function EventsForDay({ events, onDelete, onEdit }) {
   return (
     <div className="mt-2">
       <h2 className="text-sm md:text-base font-semibold text-pink-500">EVENTS FOR THE DAY</h2>
-      <div className="mt-2 space-y-2 max-h-36 md:max-h-40 overflow-y-auto">
+      <div className="mt-2 space-y-2 max-h-32 md:max-h-40 overflow-y-auto">
         {events.length > 0 ? (
           events.map((event, index) => (
             <div

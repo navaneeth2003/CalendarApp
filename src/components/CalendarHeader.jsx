@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 export default function CalendarHeader({ currentDate, setCurrentDate, onAddEvent }) {
   const handlePrevMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1));
   const handleNextMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1));
-  const handleToday = () => setCurrentDate(new Date(2025, 4, 25));
+  const handleToday = () => setCurrentDate(new Date());
 
   return (
     <div className="flex flex-wrap items-center justify-between p-2 md:p-3 bg-white rounded-xl shadow-sm w-full gap-2 md:gap-4">

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, format, isSameDay, addMonths, subMonths, isSameMonth } from 'date-fns';
 
 export default function MiniCalendar() {
-  const today = new Date(2025, 4, 25);
+  const today = new Date();
   const [currentDate, setCurrentDate] = useState(today);
 
   const monthStart = startOfMonth(currentDate);

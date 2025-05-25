@@ -4,7 +4,7 @@ export default function UserProfile() {
       <div className="flex items-center space-x-2 md:space-x-3">
         <div className="w-8 h-8 md:w-9 md:h-9 rounded-full overflow-hidden">
           <img
-            src="src/assets/pic.png"
+            src="https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg"
             alt="Profile"
             className="w-full h-full object-cover"
           />

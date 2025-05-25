@@ -30,8 +30,9 @@ function ErrorBoundary({ children }) {
 }
 
 function App() {
-  const [currentDate, setCurrentDate] = useState(new Date(2025, 4, 25));
-  const [selectedDate, setSelectedDate] = useState(new Date(2025, 4, 25));
+  const today = new Date();
+  const [currentDate, setCurrentDate] = useState(today);
+  const [selectedDate, setSelectedDate] = useState(today);
   const [showModal, setShowModal] = useState(false);
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -41,7 +42,6 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    // Dynamically construct the fetch URL based on the base path
     const basePath = import.meta.env.BASE_URL || '/';
     const fetchUrl = `${basePath}data/events.json`.replace(/^\/+/, '/');
     fetch(fetchUrl)
@@ -56,6 +56,20 @@ function App() {
         setLoading(false);
       })
       .catch((error) => {
+        setEvents([
+          {
+            date: "25/05/2025",
+            startTime: "10:00 am",
+            title: "Team Meeting",
+            color: "3B82F6"
+          },
+          {
+            date: "05/05/2025",
+            startTime: "02:30 pm",
+            title: "Doctor Appointment",
+            color: "14B8A6"
+          }
+        ]);
         setError(error.message);
         setLoading(false);
       });
@@ -134,7 +148,7 @@ function App() {
           <div className="p-2 border border-gray-200 rounded-lg">
             <MiniCalendar />
           </div>
-          <div className="p-2 border border-gray-200 rounded-lg flex-1 overflow-auto">
+          <div className="p-2 border border-gray-200 rounded-lg flex-1">
             <EventsForDay
               events={eventsForSelectedDay}
               onDelete={handleDeleteEvent}
