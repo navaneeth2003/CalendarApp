@@ -1,11 +1,11 @@
-# 📅 Calendar App
+# Calendar App
 
 A modern, responsive calendar application built with React and Vite, designed to help users manage their events and schedules efficiently. It offers a smooth, intuitive interface for both mobile and desktop users, with a strong focus on usability and clean design.
 
 ![image alt](https://github.com/navaneeth2003/CalendarApp/blob/2e0aee80177d51dce513b18052920c660defe5b9/CalendarApp%20UI.png)
 ---
 
-## ✨ Key Highlights
+##  Key Highlights
 
 * **User-Centric Design**: Easily view, add, edit, and delete events through a user-friendly modal.
 * **Responsive Interface**: Seamlessly works across all screen sizes—from mobile phones to desktops.
@@ -16,7 +16,7 @@ A modern, responsive calendar application built with React and Vite, designed to
 
 ---
 
-## ⚙️ Features Overview
+##  Features Overview
 
 1. Add / Edit / Delete Events
 2. Color Filters to sort events visually
@@ -26,7 +26,7 @@ A modern, responsive calendar application built with React and Vite, designed to
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 * **Frontend**: React (v19.1.0), React DOM
 * **Build Tool**: Vite (v6.3.5)
@@ -37,7 +37,7 @@ A modern, responsive calendar application built with React and Vite, designed to
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -87,7 +87,7 @@ public/data/events.json
 
 ---
 
-## 📦 Running the App
+##  Running the App
 
 ### Start Development Server
 
@@ -104,7 +104,7 @@ npm run preview
 
 ---
 
-## 🌐 Deployment
+##  Deployment
 
 This app is deployed to GitHub Pages at:
 **[https://navaneeth2003.github.io/CalendarApp/](https://navaneeth2003.github.io/CalendarApp/)**
@@ -135,7 +135,7 @@ npm run deploy
 
 ---
 
-## 🧭 Usage Guide
+##  Usage Guide
 
 * **Navigate Dates**: Use the calendar header or mini-calendar
 * **View Events**: Click any day to see its scheduled events
@@ -145,7 +145,7 @@ npm run deploy
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 calendar-app/
@@ -174,7 +174,7 @@ calendar-app/
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome!
 
