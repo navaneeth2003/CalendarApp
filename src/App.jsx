@@ -6,6 +6,7 @@ import EventsForDay from './components/EventsForDay';
 import MiniCalendar from './components/MiniCalendar';
 import UserProfile from './components/UserProfile';
 import { getEventsForDay } from './utils/dateUtils';
+import { isSameDay } from 'date-fns';
 
 function ErrorBoundary({ children }) {
   const [hasError, setHasError] = useState(false);
@@ -34,7 +35,10 @@ function App() {
   const [currentDate, setCurrentDate] = useState(today);
   const [selectedDate, setSelectedDate] = useState(today);
   const [showModal, setShowModal] = useState(false);
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState(() => {
+    const savedEvents = localStorage.getItem('calendarEvents');
+    return savedEvents ? JSON.parse(savedEvents) : [];
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedColors, setSelectedColors] = useState(['3B82F6', '14B8A6', 'EC4899', 'F6BE23', 'A855F7']);
@@ -52,11 +56,17 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        setEvents(data);
+        const savedEvents = JSON.parse(localStorage.getItem('calendarEvents') || '[]');
+        const allEvents = [...data, ...savedEvents].filter(
+          (event, index, self) =>
+            index === self.findIndex((e) => e.title === event.title && e.date === event.date && e.startTime === event.startTime)
+        );
+        setEvents(allEvents);
+        localStorage.setItem('calendarEvents', JSON.stringify(allEvents));
         setLoading(false);
       })
       .catch((error) => {
-        setEvents([
+        const fallbackEvents = [
           {
             date: "25/05/2025",
             startTime: "10:00 am",
@@ -69,14 +79,30 @@ function App() {
             title: "Doctor Appointment",
             color: "14B8A6"
           }
-        ]);
+        ];
+        const savedEvents = JSON.parse(localStorage.getItem('calendarEvents') || '[]');
+        const allEvents = [...fallbackEvents, ...savedEvents].filter(
+          (event, index, self) =>
+            index === self.findIndex((e) => e.title === event.title && e.date === event.date && e.startTime === event.startTime)
+        );
+        setEvents(allEvents);
+        localStorage.setItem('calendarEvents', JSON.stringify(allEvents));
         setError(error.message);
         setLoading(false);
       });
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('calendarEvents', JSON.stringify(events));
+  }, [events]);
+
   const handleDayClick = (day) => {
-    setSelectedDate(day);
+    if (selectedDate && isSameDay(day, selectedDate)) {
+      setSelectedDate(null); // Deselect if the same date is clicked again
+    } else {
+      setSelectedDate(day);
+      setShowModal(true);
+    }
   };
 
   const handleAddOrEditEvent = (newEvent) => {
@@ -120,7 +146,8 @@ function App() {
     }
   };
 
-  const eventsForSelectedDay = getEventsForDay(events, selectedDate);
+  const eventsForSelectedDay = getEventsForDay(events, selectedDate || today);
+  const isTodaySelected = selectedDate ? isSameDay(selectedDate, today) : true;
 
   if (loading) {
     return (
@@ -153,6 +180,7 @@ function App() {
               events={eventsForSelectedDay}
               onDelete={handleDeleteEvent}
               onEdit={handleEditEvent}
+              isToday={isTodaySelected}
             />
           </div>
           <div className="p-2 border border-gray-200 rounded-lg">
@@ -217,6 +245,7 @@ function App() {
               events={events}
               selectedDate={selectedDate}
               selectedColors={selectedColors}
+              setCurrentDate={setCurrentDate}
             />
           </div>
           <EventModal
@@ -226,7 +255,7 @@ function App() {
               setEditingEvent(null);
             }}
             onSave={handleAddOrEditEvent}
-            selectedDate={selectedDate}
+            selectedDate={selectedDate || today}
             eventToEdit={editingEvent}
           />
         </div>

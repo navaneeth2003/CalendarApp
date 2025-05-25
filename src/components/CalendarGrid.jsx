@@ -1,7 +1,7 @@
-import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval } from 'date-fns';
+import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isBefore, isAfter } from 'date-fns';
 import DayCell from './DayCell';
 
-export default function CalendarGrid({ currentDate, onDayClick, events, selectedDate, selectedColors }) {
+export default function CalendarGrid({ currentDate, onDayClick, events, selectedDate, selectedColors, setCurrentDate }) {
   try {
     const monthStart = startOfMonth(currentDate);
     const monthEnd = endOfMonth(monthStart);
@@ -10,6 +10,18 @@ export default function CalendarGrid({ currentDate, onDayClick, events, selected
 
     const days = eachDayOfInterval({ start: gridStart, end: gridEnd });
 
+    const handleDayClick = (day) => {
+      onDayClick(day);
+      // If the clicked day is in the previous month, go to that month
+      if (isBefore(day, monthStart)) {
+        setCurrentDate(new Date(day.getFullYear(), day.getMonth()));
+      }
+      // If the clicked day is in the next month, go to that month
+      else if (isAfter(day, monthEnd)) {
+        setCurrentDate(new Date(day.getFullYear(), day.getMonth()));
+      }
+    };
+
     return (
       <div className="mt-2 md:mt-3 w-full">
         <div className="grid grid-cols-7 gap-0.5 md:gap-1 text-center text-[10px] md:text-sm font-medium text-gray-500">
@@ -17,13 +29,13 @@ export default function CalendarGrid({ currentDate, onDayClick, events, selected
             <div key={d} className="py-0.5 md:py-2">{d}</div>
           ))}
         </div>
-        <div className="grid grid-cols-7 gap-0.5 md:gap-1">
+        <div className="grid grid-cols-7 gap-[1px] md:gap-0.5">
           {days.map((day) => (
             <DayCell
               key={day}
               day={day}
               currentDate={currentDate}
-              onClick={() => onDayClick(day)}
+              onClick={() => handleDayClick(day)}
               events={events.filter((event) => {
                 try {
                   const [eventDay, eventMonth, eventYear] = event.date.split('/').map(Number);
@@ -39,6 +51,7 @@ export default function CalendarGrid({ currentDate, onDayClick, events, selected
               })}
               selectedDate={selectedDate}
               selectedColors={selectedColors}
+              onAddEvent={onDayClick}
             />
           ))}
         </div>
