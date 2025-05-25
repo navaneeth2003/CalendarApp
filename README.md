@@ -2,6 +2,7 @@
 
 A modern, responsive calendar application built with React and Vite, designed to help users manage their events and schedules efficiently. It offers a smooth, intuitive interface for both mobile and desktop users, with a strong focus on usability and clean design.
 
+![image alt](https://github.com/navaneeth2003/CalendarApp/blob/2e0aee80177d51dce513b18052920c660defe5b9/CalendarApp%20UI.png)
 ---
 
 ## ✨ Key Highlights
